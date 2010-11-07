@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JUnit_in_Action" default="test" basedir=".">
+	<description>Beispiel eines Ant Builds zur Erstellung eines JUnit-Test und Report
+	
+	
+<target name="init" description="Prepare needed directories">
+<mkdir dir="${classes.dir}" />
+<mkdir dir="${reports.xml.dir}" />
+<mkdir dir="${reports.html.dir}" />
+</target>
+
+//<target name="clean" description="Remove all files created by the build/test process.">
+
+
+
+
+<target name="compile" despends="init">
+<javac scrdir="${scr.dir}" destdir="${classes.dir}" debug="yes">
+<classpath refid="junit.classpath" />
+</javac>
+<javac srcdir="${test.dir} destdir="${classes.dir}" debug="yes">
+	<classpath ref id="junit.classpath" />
+</javac>
+</target>
+
+
+
+
+<target name="test" depends="compile">
+	<junit>
+		<classpath location=${classes.dir}" />
+		<classpath refid="junit.classpath" />
+		<formatter type="brief" usefile="false" />
+		<test name="it.rambow.fhb.junit.SimpleJUnitExampleSuite"/>
+	</junit>
+</target>
+
